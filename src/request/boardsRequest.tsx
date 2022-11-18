@@ -37,7 +37,7 @@ export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => 
     if (boardsPageParams.page) {params.page = boardsPageParams.page;}
     if (boardsPageParams.direction) {params.sort += boardsPageParams.direction;}
     let url;
-    url = "/boards/offset/"
+    url = "/board-service/boards/offset/"
     return axios
         .post(url,{
             boardWriterNickname: boardsPageParams?.boardWriterNickname,
@@ -52,7 +52,7 @@ export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => 
 
 export const boardsInfoRequest = async (id: string | undefined) => {
     let url;
-    url = `/boards/${id}`
+    url = `/board-service/boards/${id}`
     if (id === undefined) {
         return
     }
@@ -62,7 +62,7 @@ export const boardsInfoRequest = async (id: string | undefined) => {
 
 export const newBoardRequest = async (params: newBoardParams, token: string) => {
     let url;
-    url = "/boards"
+    url = "/board-service/boards"
     return axios
         .post(url,
             {
@@ -84,7 +84,7 @@ export const newBoardRequest = async (params: newBoardParams, token: string) => 
 
 export const updateBoardsRequest = async (params: newBoardParams, token: string, boardsId: string) => {
     let url;
-    url = `/boards/${boardsId}`
+    url = `/board-service/boards/${boardsId}`
     return axios
         .put(url,
             {
@@ -103,7 +103,7 @@ export const deleteBoardsRequest = async (token: string, boardsId: string) => {
     console.log("here")
     console.log(boardsId)
     let url;
-    url = `/boards/${boardsId}`
+    url = `/board-service/boards/${boardsId}`
     return axios
         .delete(url,{
                 headers: {

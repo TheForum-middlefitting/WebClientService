@@ -14,7 +14,7 @@ export interface usersUpdateParams {
 
 export const loginRequest = async (enteredEmail: string, enteredPassword: string) => {
     let url;
-    url = "/members/login";
+    url = "/member-service/members/login";
     return await axios.post(url, {
         email: enteredEmail,
         password: enteredPassword
@@ -23,7 +23,7 @@ export const loginRequest = async (enteredEmail: string, enteredPassword: string
 
 export const signUpRequest = async (email: string, nickname: string, password: string) => {
     let url;
-    url = "/members"
+    url = "/member-service/members"
     return await axios.post(url, {
         email: email,
         nickname: nickname,
@@ -33,7 +33,7 @@ export const signUpRequest = async (email: string, nickname: string, password: s
 
 export const nicknameCheckRequest = async (nickname: string) => {
     let url;
-    url = "/members/nickname-check"
+    url = "/member-service/members/nickname-check"
     let params = {
         nickname : nickname,
     };
@@ -45,7 +45,7 @@ export const nicknameCheckRequest = async (nickname: string) => {
 
 export const emailCheckRequest = async (email: string) => {
     let url;
-    url = "/members/email-check"
+    url = "/member-service/members/email-check"
     let params = {
         email : email,
     };
@@ -57,7 +57,7 @@ export const emailCheckRequest = async (email: string) => {
 
 export const usersInfoRequest = async (id: string, token: string) => {
     let url;
-    url = `/members/${id}`
+    url = `/member-service/members/${id}`
     const response = await axios.get(url,
         {
             headers: {
@@ -69,7 +69,7 @@ export const usersInfoRequest = async (id: string, token: string) => {
 
 export const deleteUsersRequest = async (id: string, password: string, token: string) => {
     let url;
-    url = `/members/${id}/${password}`
+    url = `/member-service/members/${id}/${password}`
     const response = await axios.delete(url,
         {
             headers: {
@@ -81,7 +81,7 @@ export const deleteUsersRequest = async (id: string, password: string, token: st
 
 export const updateUsersRequest = async (id : string, usersUpdateParams: usersUpdateParams, token: string) => {
     let url;
-    url = `/members/${id}`
+    url = `/member-service/members/${id}`
     return await axios.put(url, {
         email: usersUpdateParams.email,
         nickname: usersUpdateParams.nickname,
