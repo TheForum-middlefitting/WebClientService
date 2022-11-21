@@ -64,14 +64,18 @@ export const usersInfoRequest = async (id: string, token: string) => {
                 authorization: token,
             }
         })
-    return response.data.data;
+    return response.data;
 }
 
 export const deleteUsersRequest = async (id: string, password: string, token: string) => {
     let url;
-    url = `/member-service/members/${id}/${password}`
+    url = `/member-service/members/${id}`
+    let params = {
+        password,
+    };
     const response = await axios.delete(url,
         {
+            params,
             headers: {
                 authorization: token,
             }
