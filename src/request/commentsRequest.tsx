@@ -10,22 +10,22 @@ export interface commentsParams {
 };
 
 export interface newCommentsParams {
-    boardsId : string;
+    boardId : string;
     commentsContent : string | null;
 };
 
 export interface commentsUpdateParams {
     commentsContent : string | null;
-    boardsId : string | null;
+    boardId : string | null;
     commentsId : string | null;
 }
 
 
-export const commentsPageRequest = async (boardsId : string, commentsId : any) => {
+export const commentsPageRequest = async (boardId : string, commentsId : any) => {
     let url;
     console.log("query")
     console.log(commentsId)
-    url = `/comment-service/boards/${boardsId}/comments/next/`
+    url = `/comment-service/boards/${boardId}/comments/next/`
     const response = await axios.post(url,{
         commentId: commentsId,
     })
@@ -37,7 +37,7 @@ export const commentsPageRequest = async (boardsId : string, commentsId : any) =
 
 export const newCommentsRequest = async (params : newCommentsParams, token : string) => {
     let url;
-    url = `/comment-service/boards/${params.boardsId}/comments`
+    url = `/comment-service/boards/${params.boardId}/comments`
     console.log(params)
     const response = await axios.post(url, {
         content: params.commentsContent
@@ -51,7 +51,7 @@ export const newCommentsRequest = async (params : newCommentsParams, token : str
 
 export const commentsUpdateRequest = async (params : commentsUpdateParams, token : string) => {
     let url;
-    url = `/comment-service/boards/${params.boardsId}/comments/${params.commentsId}`
+    url = `/comment-service/boards/${params.boardId}/comments/${params.commentsId}`
     return await axios.put(url, {
         content: params.commentsContent
     }, {
@@ -64,9 +64,9 @@ export const commentsUpdateRequest = async (params : commentsUpdateParams, token
     });
 }
 
-export const commentsDeleteRequest = async (boardsId : string, commentsId : string | null, token : string) => {
+export const commentsDeleteRequest = async (boardId : string, commentsId : string | null, token : string) => {
     let url;
-    url = `/comment-service/boards/${boardsId}/comments/${commentsId}`
+    url = `/comment-service/boards/${boardId}/comments/${commentsId}`
     return await axios.delete(url, {
         headers: {
             authorization: token,

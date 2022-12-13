@@ -25,7 +25,7 @@ export default function CommentsListElement(props: any) {
 
     const updateCommentsMutation = useMutation((params: commentsUpdateParams) => commentsUpdateRequest(params, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 { refetchInactive: true })
                 .then(r => {
                     setIsLoading(false)
@@ -44,9 +44,9 @@ export default function CommentsListElement(props: any) {
         }
     });
 
-    const deleteCommentsMutation = useMutation((params) => commentsDeleteRequest(props.boardsId, props.id, authCtx.authorization), {
+    const deleteCommentsMutation = useMutation((params) => commentsDeleteRequest(props.boardId, props.id, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 { refetchInactive: true })
                 .then(r => {
                     setIsLoading(false)
@@ -75,7 +75,7 @@ export default function CommentsListElement(props: any) {
         }
         const params : commentsUpdateParams = {
             commentsContent : content.trim(),
-            boardsId : props.boardsId,
+            boardId : props.boardId,
             commentsId : props.id
         }
         setIsLoading(true)
@@ -83,7 +83,7 @@ export default function CommentsListElement(props: any) {
         // const response = await commentsUpdateRequest(params, authCtx.authorization);
         // if (response.status == 200) {
         //     alert("업데이트 성공!")
-            // await queryClient.invalidateQueries(["boardsCommentsPage", props.boardsId, null])
+            // await queryClient.invalidateQueries(["boardsCommentsPage", props.boardId, null])
             // props.setCommentsData([])
             // props.setCommentsId(null)
             // props.setRefresh(!props.refresh)
@@ -94,7 +94,7 @@ export default function CommentsListElement(props: any) {
     };
 
     const deleteCommentsRequestHandler = async () => {
-        // const response = await commentsDeleteRequest(props.boardsId, props.id, authCtx.authorization);
+        // const response = await commentsDeleteRequest(props.boardId, props.id, authCtx.authorization);
         // if (response.status == 200) {
         //     alert("삭제 성공!")
         //     await queryClient.invalidateQueries(["boardsCommentsPage", null])

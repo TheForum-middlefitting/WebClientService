@@ -12,7 +12,6 @@ import {alertActions} from "../../../store/redux/alertSlice";
 import {errorActions} from "../../../store/redux/errorSlice";
 import {useDispatch} from "react-redux";
 import {warningActions} from "../../../store/redux/warningSlice";
-import {Link} from "react-router-dom";
 
 export default function NewComments(props: any) {
     const authCtx = useContext(AuthContext);
@@ -23,7 +22,7 @@ export default function NewComments(props: any) {
 
     const postCommentsMutation = useMutation((params: newCommentsParams) => newCommentsRequest(params, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 {refetchInactive: true})
                 .then(r => {
                     setIsLoading(false)
@@ -60,7 +59,7 @@ export default function NewComments(props: any) {
 
     const postCommentHandler = async () => {
         const params: newCommentsParams = {
-            boardsId: props.boardsId,
+            boardId: props.boardId,
             commentsContent: content.trim(),
         }
         if (!contentCheckHandler()) {

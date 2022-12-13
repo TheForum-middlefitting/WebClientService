@@ -15,25 +15,25 @@ export default function CommentsList(props: any) {
     const [commentsId, setCommentsId] = useState(null);
     const [commentsCount, setCommentsCount] = useState(0);
 
-    // const { data } = useQuery(["boardsCommentsPage", props.boardsId, commentsId],
+    // const { data } = useQuery(["boardsCommentsPage", props.boardId, commentsId],
     const tempId = commentsId ? commentsId : -1
-    const { data } = useQuery(["boardsCommentsPage" + props.boardsId,
+    const { data } = useQuery(["boardsCommentsPage" + props.boardId,
             {
-                // boardsId : props.boardsId,
+                // boardId : props.boardId,
                 commentsId : tempId
             }],
-        () => commentsPageRequest(props.boardsId, commentsId),
+        () => commentsPageRequest(props.boardId, commentsId),
         {
             suspense: true,
             onSuccess : () => {
-                // queryClient.invalidateQueries(["boardsCommentsPage", props.boardsId, commentsId])
+                // queryClient.invalidateQueries(["boardsCommentsPage", props.boardId, commentsId])
                 // queryClient.invalidateQueries(["boardsCommentsPage"])
             }
         })
     // console.log(commentsId)
     const appendCommentsHandler = async () => {
         let loadedComments: any[] = commentsData;
-        // const response = await commentsPageRequest(props.boardsId, commentsId);
+        // const response = await commentsPageRequest(props.boardId, commentsId);
         const response = data;
         const responseData = await response.data;
         if (response.status === 200) {
@@ -73,7 +73,7 @@ export default function CommentsList(props: any) {
                 memberId={comment.memberId}
                 nickname={comment.nickname}
                 content={comment.content}
-                boardsId={props.boardsId}
+                boardId={props.boardId}
                 regDate={comment.regDate}
                 setRefresh={setRefresh}
                 refresh={refresh}
@@ -86,7 +86,7 @@ export default function CommentsList(props: any) {
     return (
         <>
             <p className="text-break">{commentsCount} 개의 댓글</p>
-            <NewComments boardsId={props?.boardsId} setRefresh={setRefresh} refresh={refresh} setCommentsData={setCommentsData} setCommentsId={setCommentsId}/>
+            <NewComments boardId={props?.boardId} setRefresh={setRefresh} refresh={refresh} setCommentsData={setCommentsData} setCommentsId={setCommentsId}/>
             <div className="list-group list-group-flush">
                 {commentsList}
                 {!isFinal && <Button variant={"outline-primary"} onClick={appendCommentsHandler}>더보기</Button>}

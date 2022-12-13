@@ -29,7 +29,7 @@ export default function BoardInfoForm(props: any) {
     const navigate = useNavigate();
     const params = useParams();
     const {data} = useQuery(["boardsInfo", params?.id?.toString()], () => boardsInfoRequest(params?.id), {suspense: true})
-    const boardsInfoData = data.data;
+    const boardsInfoData = data;
     const [isLoading, setIsLoading] = useState(false);
     const authCtx = useContext(AuthContext)
     const [isUpdating, setIsUpdating] = useState(false);
@@ -163,7 +163,7 @@ export default function BoardInfoForm(props: any) {
             {/*<hr/>*/}
             <ErrorBoundary FallbackComponent={UserProfileFallback}>
                 <Suspense fallback={<LoadingSpinners/>}>
-                    <CommentsList boardsId={params?.id}/>
+                    <CommentsList boardId={params?.id}/>
                 </Suspense>
             </ErrorBoundary>
         </>

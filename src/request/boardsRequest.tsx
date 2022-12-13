@@ -45,7 +45,7 @@ export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => 
             boardContent : boardsPageParams?.boardContent,
             boardCategory : boardsPageParams?.boardCategory
         }, {params})
-        .then((res) => res.data)
+        .then((res) => res)
     // .catch((err) => console.log(err));
 }
 
@@ -75,16 +75,11 @@ export const newBoardRequest = async (params: newBoardParams, token: string) => 
                 }
             })
         .then((res) => res.data)
-        // .catch((err) => {
-        //     console.log(err);
-        //     alert(err.response.data.status + err.response.data.code + ' : ' + err.response.data.message)
-        //     throw err
-        // });
 }
 
-export const updateBoardsRequest = async (params: newBoardParams, token: string, boardsId: string) => {
+export const updateBoardsRequest = async (params: newBoardParams, token: string, boardId: string) => {
     let url;
-    url = `/board-service/boards/${boardsId}`
+    url = `/board-service/boards/${boardId}`
     return axios
         .put(url,
             {
@@ -99,11 +94,11 @@ export const updateBoardsRequest = async (params: newBoardParams, token: string,
         .then((res) => res.data)
 }
 
-export const deleteBoardsRequest = async (token: string, boardsId: string) => {
+export const deleteBoardsRequest = async (token: string, boardId: string) => {
     console.log("here")
-    console.log(boardsId)
+    console.log(boardId)
     let url;
-    url = `/board-service/boards/${boardsId}`
+    url = `/board-service/boards/${boardId}`
     return axios
         .delete(url,{
                 headers: {
