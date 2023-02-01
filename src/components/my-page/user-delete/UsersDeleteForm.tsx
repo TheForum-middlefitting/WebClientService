@@ -4,11 +4,10 @@ import Button from "react-bootstrap/Button";
 import React, {useContext, useState} from "react";
 import AuthContext from "../../../store/context/auth-context";
 import {useDispatch} from "react-redux";
-import {errorActions} from "../../../store/redux/errorSlice";
 import {alertActions} from "../../../store/redux/alertSlice";
 import {warningActions} from "../../../store/redux/warningSlice";
 import {useMutation, useQueryClient} from "react-query";
-import {deleteUsersRequest, updateUsersRequest, usersUpdateParams} from "../../../request/usersRequest";
+import {deleteUsersRequest} from "../../../request/usersRequest";
 import {useNavigate} from "react-router-dom";
 
 export default function UsersDeleteForm() {

@@ -2,10 +2,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import React, {useContext, useState} from "react";
-import {
-    newCommentsParams,
-    newCommentsRequest
-} from "../../../request/commentsRequest";
+import {newCommentsParams, newCommentsRequest} from "../../../request/commentsRequest";
 import AuthContext from "../../../store/context/auth-context";
 import {useMutation, useQueryClient} from "react-query";
 import {alertActions} from "../../../store/redux/alertSlice";
@@ -67,14 +64,6 @@ export default function NewComments(props: any) {
         }
         setIsLoading(true)
         postCommentsMutation.mutate(params);
-        // const response = await newCommentsRequest(params, authCtx.authorization);
-        // if (response?.status === 200) {
-        //     alert("댓글 작성을 완료하였습니다!!")
-        //     setContent('');
-        //     props.setRefresh(!props.refresh)
-        //     props.setCommentsData([])
-        //     props.setCommentsId(null)
-        // }
     }
 
     const submitCheck = (event: React.FormEvent) => {
@@ -85,7 +74,6 @@ export default function NewComments(props: any) {
     }
 
     return (<>
-            {/*<Link className={"mb-3"} to={`/sign-up`}>로그인 하고 댓글쓰기</Link>*/}
             <Form noValidate onSubmit={submitCheck}>
                 <InputGroup className="mb-5">
                     <Form.Control

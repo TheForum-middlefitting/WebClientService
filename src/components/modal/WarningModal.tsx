@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {useDispatch, useSelector} from "react-redux";
-import { warningActions} from "../../store/redux/warningSlice";
+import {warningActions} from "../../store/redux/warningSlice";
 
 export default function WarningModal(props : any) {
     const dispatch = useDispatch();

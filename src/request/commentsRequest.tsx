@@ -32,7 +32,7 @@ export const commentsPageRequest = async (boardId : string, commentsId : any) =>
     if(response.status !== 200) {
         alert(response.status)
     }
-    return response.data;
+    return response;
 }
 
 export const newCommentsRequest = async (params : newCommentsParams, token : string) => {

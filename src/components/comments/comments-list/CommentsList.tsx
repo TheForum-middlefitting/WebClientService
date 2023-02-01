@@ -1,12 +1,9 @@
-import BoardListForm from "../../board/board-list-element/BoardListElement";
 import React, {useEffect, useState} from "react";
-import {boardsInfoRequest, boardsPageRequest} from "../../../request/boardsRequest";
 import {commentsPageRequest} from "../../../request/commentsRequest";
 import CommentsListElement from "./comments-element/CommentsListElement";
 import Button from "react-bootstrap/Button";
 import NewComments from "../new-comments/NewComments";
-import {Modal} from "react-bootstrap";
-import {useQuery, useQueryClient} from "react-query";
+import {useQuery} from "react-query";
 
 export default function CommentsList(props: any) {
     const [commentsData, setCommentsData] = useState<any[]>([]);
@@ -15,11 +12,9 @@ export default function CommentsList(props: any) {
     const [commentsId, setCommentsId] = useState(null);
     const [commentsCount, setCommentsCount] = useState(0);
 
-    // const { data } = useQuery(["boardsCommentsPage", props.boardId, commentsId],
     const tempId = commentsId ? commentsId : -1
     const { data } = useQuery(["boardsCommentsPage" + props.boardId,
             {
-                // boardId : props.boardId,
                 commentsId : tempId
             }],
         () => commentsPageRequest(props.boardId, commentsId),
@@ -30,13 +25,11 @@ export default function CommentsList(props: any) {
                 // queryClient.invalidateQueries(["boardsCommentsPage"])
             }
         })
-    // console.log(commentsId)
     const appendCommentsHandler = async () => {
         let loadedComments: any[] = commentsData;
-        // const response = await commentsPageRequest(props.boardId, commentsId);
         const response = data;
-        const responseData = await response.data;
-        if (response.status === 200) {
+        const responseData = await response?.data;
+        if (response?.status === 200) {
             const content = responseData.content;
             for (const temp in commentsData) {
                 for (const key in responseData.content) {
@@ -66,7 +59,6 @@ export default function CommentsList(props: any) {
     }, [refresh])
 
     const commentsList = commentsData?.map((comment) => {
-        // const refreshId = parseInt(String(comment.id / 10), 10);
             return <CommentsListElement
                 key={"comment" + comment.id}
                 id={comment.id}
@@ -79,7 +71,6 @@ export default function CommentsList(props: any) {
                 refresh={refresh}
                 setCommentsData={setCommentsData}
                 setCommentsId={setCommentsId}
-                // refreshId={refreshId > 0 ? refreshId : null }
             />
         }
     )
