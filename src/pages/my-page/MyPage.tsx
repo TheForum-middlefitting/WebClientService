@@ -1,6 +1,4 @@
 import MyPageForm from "../../components/my-page/MyPageForm";
-import {ErrorBoundary} from "react-error-boundary";
-import {UserProfileFallback} from "../../components/TestError";
 import React, {Suspense, useContext, useEffect, useState} from "react";
 import LoadingSpinners from "../../components/spinner/LoadingSpinner";
 import AuthContext from "../../store/context/auth-context";
@@ -36,12 +34,10 @@ export default function MyPage() {
     )
 
     return (
-    <ErrorBoundary FallbackComponent={UserProfileFallback}>
         <Suspense fallback={<LoadingSpinners />}>
             {navBar}
             {selected === "users-info" && <MyPageForm />}
             {selected === "delete-users" && <UsersDeleteForm />}
         </Suspense>
-    </ErrorBoundary>
     )
 }

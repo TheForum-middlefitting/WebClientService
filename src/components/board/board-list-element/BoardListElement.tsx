@@ -8,10 +8,7 @@ export default function BoarListElement(props : any) {
     const elapsedDate = elapsedTime(props.regDate);
 
     const toSingleBoardsPage = () => {
-        navigate(`/boards/info/${props.id}`,  {state : {
-                // id : props.id
-            }
-        });
+        navigate(`/boards/info/${props.id}`);
     }
 
     const categoryParsing = (category : string) => {

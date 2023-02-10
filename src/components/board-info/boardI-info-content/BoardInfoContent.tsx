@@ -4,11 +4,11 @@ import {warningActions} from "../../../store/redux/warningSlice";
 import {useDispatch} from "react-redux";
 import AuthContext from "../../../store/context/auth-context";
 import {useMutation, useQueryClient} from "react-query";
-import {deleteBoardsRequest, newBoardParams, updateBoardsRequest} from "../../../request/boardsRequest";
+import {deleteBoardsRequest} from "../../../request/boardsRequest";
 import {alertActions} from "../../../store/redux/alertSlice";
 import {errorActions} from "../../../store/redux/errorSlice";
 import {useNavigate} from "react-router-dom";
-import {elapsedTime, getDate, getDateTime} from "../../utils/dateParse";
+import {getDateTime} from "../../utils/dateParse";
 
 export default function BoardInfoContent(props: any) {
     const authCtx = useContext(AuthContext)

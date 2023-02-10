@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import {useDispatch, useSelector} from "react-redux";
-import { errorActions} from "../../store/redux/errorSlice";
+import {errorActions} from "../../store/redux/errorSlice";
 
 export default function ErrorModal(props : any) {
     const dispatch = useDispatch();

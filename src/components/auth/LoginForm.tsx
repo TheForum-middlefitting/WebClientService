@@ -1,16 +1,12 @@
-import classes from "./LoginForm.module.css"
 import React, {useContext, useEffect, useRef, useState} from "react";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import axios from "axios";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import AuthContext from "../../store/context/auth-context";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import {loginRequest} from "../../request/usersRequest";
 import {useMutation} from "react-query";
-import {errorActions} from "../../store/redux/errorSlice";
 import {alertActions} from "../../store/redux/alertSlice";
-import {warningActions} from "../../store/redux/warningSlice";
 import {useDispatch} from "react-redux";
 
 
@@ -124,60 +120,3 @@ export default function LoginForm() {
     )
 }
 
-
-{/*<section className={classes.auth}>*/
-}
-{/*    <h1>{authCtx.isLoggedIn ? "Login" : "Sign Up"}</h1>*/
-}
-{/*    <form onSubmit={submitHandler}>*/
-}
-{/*        <div className={classes.control}>*/
-}
-{/*            <label htmlFor="email">Your Email</label>*/
-}
-{/*            <input*/
-}
-{/*                type="email"*/
-}
-{/*                id="email"*/
-}
-{/*                required*/
-}
-{/*                ref={emailInputRef}/>*/
-}
-{/*        </div>*/
-}
-{/*        <div className={classes.control}>*/
-}
-{/*            <label htmlFor="password">Your Password</label>*/
-}
-{/*            <input*/
-}
-{/*                type="password"*/
-}
-{/*                id="password"*/
-}
-{/*                required*/
-}
-{/*                ref={passwordInputRef}*/
-}
-{/*            />*/
-}
-{/*        </div>*/
-}
-{/*        <div className={classes.actions}>*/
-}
-{/*            {!isLoading && <button>Login</button>}*/
-}
-{/*            {isLoading && <p>Sending Request..</p>}*/
-}
-{/*        </div>*/
-}
-{/*    </form>*/
-}
-{/*    <p/>*/
-}
-{/*    {!isLoading && <Link to={`/sign-up`}>Create new account</Link>}*/
-}
-{/*</section>*/
-}

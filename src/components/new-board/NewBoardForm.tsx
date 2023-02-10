@@ -1,13 +1,11 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import React, {useContext, useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Simulate} from "react-dom/test-utils";
 import AuthContext from "../../store/context/auth-context";
 import {newBoardParams, newBoardRequest} from "../../request/boardsRequest";
-import {postBoards} from "../../request/test/WrapPromise";
-import error = Simulate.error;
-import {useMutation, useQuery, useQueryClient} from "react-query";
+import {useMutation, useQueryClient} from "react-query";
 import {errorActions} from "../../store/redux/errorSlice";
 import {alertActions} from "../../store/redux/alertSlice";
 import {warningActions} from "../../store/redux/warningSlice";

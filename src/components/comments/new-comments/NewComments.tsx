@@ -2,17 +2,13 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import React, {useContext, useState} from "react";
-import {
-    newCommentsParams,
-    newCommentsRequest
-} from "../../../request/commentsRequest";
+import {newCommentsParams, newCommentsRequest} from "../../../request/commentsRequest";
 import AuthContext from "../../../store/context/auth-context";
 import {useMutation, useQueryClient} from "react-query";
 import {alertActions} from "../../../store/redux/alertSlice";
 import {errorActions} from "../../../store/redux/errorSlice";
 import {useDispatch} from "react-redux";
 import {warningActions} from "../../../store/redux/warningSlice";
-import {Link} from "react-router-dom";
 
 export default function NewComments(props: any) {
     const authCtx = useContext(AuthContext);
@@ -23,7 +19,7 @@ export default function NewComments(props: any) {
 
     const postCommentsMutation = useMutation((params: newCommentsParams) => newCommentsRequest(params, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 {refetchInactive: true})
                 .then(r => {
                     setIsLoading(false)
@@ -60,7 +56,7 @@ export default function NewComments(props: any) {
 
     const postCommentHandler = async () => {
         const params: newCommentsParams = {
-            boardsId: props.boardsId,
+            boardId: props.boardId,
             commentsContent: content.trim(),
         }
         if (!contentCheckHandler()) {
@@ -68,14 +64,6 @@ export default function NewComments(props: any) {
         }
         setIsLoading(true)
         postCommentsMutation.mutate(params);
-        // const response = await newCommentsRequest(params, authCtx.authorization);
-        // if (response?.status === 200) {
-        //     alert("댓글 작성을 완료하였습니다!!")
-        //     setContent('');
-        //     props.setRefresh(!props.refresh)
-        //     props.setCommentsData([])
-        //     props.setCommentsId(null)
-        // }
     }
 
     const submitCheck = (event: React.FormEvent) => {
@@ -86,7 +74,6 @@ export default function NewComments(props: any) {
     }
 
     return (<>
-            {/*<Link className={"mb-3"} to={`/sign-up`}>로그인 하고 댓글쓰기</Link>*/}
             <Form noValidate onSubmit={submitCheck}>
                 <InputGroup className="mb-5">
                     <Form.Control
