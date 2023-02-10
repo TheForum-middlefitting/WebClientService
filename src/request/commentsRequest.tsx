@@ -23,12 +23,11 @@ export interface commentsUpdateParams {
 
 export const commentsPageRequest = async (boardId : string, commentsId : any) => {
     let url;
-    console.log("query")
-    console.log(commentsId)
-    url = `/comment-service/boards/${boardId}/comments/next/`
-    const response = await axios.post(url,{
-        commentId: commentsId,
-    })
+    let params = {
+        commentId : commentsId,
+    };
+    url = `/comment-service/boards/${boardId}/comments/`
+    const response = await axios.get(url,{params})
     if(response.status !== 200) {
         alert(response.status)
     }

@@ -25,9 +25,12 @@ export default function CommentsList(props: any) {
                 // queryClient.invalidateQueries(["boardsCommentsPage"])
             }
         })
+
     const appendCommentsHandler = async () => {
         let loadedComments: any[] = commentsData;
-        const response = data;
+        let response = data;
+        if (commentsId != null)
+            response = await commentsPageRequest(props.boardId, commentsId);
         const responseData = await response?.data;
         if (response?.status === 200) {
             const content = responseData.content;

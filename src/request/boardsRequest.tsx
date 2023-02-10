@@ -29,24 +29,23 @@ export interface newBoardParams {
     boardContent: string | null;
 }
 export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => {
+
     console.log("request!")
     let params = {
         page : 0,
         sort : "regDate,",
+        boardWriterNickname: boardsPageParams?.boardWriterNickname,
+        boardTitle : boardsPageParams?.boardTitle,
+        boardContent : boardsPageParams?.boardContent,
+        boardCategory : boardsPageParams?.boardCategory,
     };
     if (boardsPageParams.page) {params.page = boardsPageParams.page;}
     if (boardsPageParams.direction) {params.sort += boardsPageParams.direction;}
     let url;
-    url = "/board-service/boards/offset/"
+    url = "/board-service/boards/"
     return axios
-        .post(url,{
-            boardWriterNickname: boardsPageParams?.boardWriterNickname,
-            boardTitle : boardsPageParams?.boardTitle,
-            boardContent : boardsPageParams?.boardContent,
-            boardCategory : boardsPageParams?.boardCategory
-        }, {params})
-        .then((res) => res)
-    // .catch((err) => console.log(err));
+        .get(url, {params})
+        .then((res) => res);
 }
 
 
@@ -95,8 +94,6 @@ export const updateBoardsRequest = async (params: newBoardParams, token: string,
 }
 
 export const deleteBoardsRequest = async (token: string, boardId: string) => {
-    console.log("here")
-    console.log(boardId)
     let url;
     url = `/board-service/boards/${boardId}`
     return axios

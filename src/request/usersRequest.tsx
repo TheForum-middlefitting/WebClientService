@@ -33,7 +33,7 @@ export const signUpRequest = async (email: string, nickname: string, password: s
 
 export const nicknameCheckRequest = async (nickname: string) => {
     let url;
-    url = "/member-service/members/nickname-check"
+    url = "/member-service/nickname-check"
     let params = {
         nickname : nickname,
     };
@@ -45,7 +45,7 @@ export const nicknameCheckRequest = async (nickname: string) => {
 
 export const emailCheckRequest = async (email: string) => {
     let url;
-    url = "/member-service/members/email-check"
+    url = "/member-service/email-check"
     let params = {
         email : email,
     };
