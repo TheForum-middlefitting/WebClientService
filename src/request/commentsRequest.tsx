@@ -27,7 +27,7 @@ export const commentsPageRequest = async (boardId : string, commentsId : any) =>
         commentId : commentsId,
     };
     url = `/comment-service/boards/${boardId}/comments/`
-    const response = await axios.get(url,{params})
+    const response = await axios.get(process.env.REACT_APP_DB_HOST + url,{params})
     if(response.status !== 200) {
         alert(response.status)
     }
@@ -37,8 +37,7 @@ export const commentsPageRequest = async (boardId : string, commentsId : any) =>
 export const newCommentsRequest = async (params : newCommentsParams, token : string) => {
     let url;
     url = `/comment-service/boards/${params.boardId}/comments`
-    console.log(params)
-    const response = await axios.post(url, {
+    const response = await axios.post(process.env.REACT_APP_DB_HOST + url, {
         content: params.commentsContent
     }, {
         headers: {
@@ -51,7 +50,7 @@ export const newCommentsRequest = async (params : newCommentsParams, token : str
 export const commentsUpdateRequest = async (params : commentsUpdateParams, token : string) => {
     let url;
     url = `/comment-service/boards/${params.boardId}/comments/${params.commentsId}`
-    return await axios.put(url, {
+    return await axios.put(process.env.REACT_APP_DB_HOST + url, {
         content: params.commentsContent
     }, {
         headers: {
@@ -66,7 +65,7 @@ export const commentsUpdateRequest = async (params : commentsUpdateParams, token
 export const commentsDeleteRequest = async (boardId : string, commentsId : string | null, token : string) => {
     let url;
     url = `/comment-service/boards/${boardId}/comments/${commentsId}`
-    return await axios.delete(url, {
+    return await axios.delete(process.env.REACT_APP_DB_HOST + url, {
         headers: {
             authorization: token,
         }

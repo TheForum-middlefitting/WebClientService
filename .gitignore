@@ -26,3 +26,7 @@ yarn-error.log*
 *secret.yml
 *secret.properties
 *secret.env
+
+Dockerfile
+
+nginx.conf

@@ -30,7 +30,6 @@ export interface newBoardParams {
 }
 export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => {
 
-    console.log("request!")
     let params = {
         page : 0,
         sort : "regDate,",
@@ -44,7 +43,7 @@ export const boardsPageRequest = async (boardsPageParams : boardsPageParams) => 
     let url;
     url = "/board-service/boards/"
     return axios
-        .get(url, {params})
+        .get(process.env.REACT_APP_DB_HOST + url, {params})
         .then((res) => res);
 }
 
@@ -55,7 +54,7 @@ export const boardsInfoRequest = async (id: string | undefined) => {
     if (id === undefined) {
         return
     }
-    const response = await axios.get(url)
+    const response = await axios.get(process.env.REACT_APP_DB_HOST + url)
     return response.data;
 }
 
@@ -63,7 +62,7 @@ export const newBoardRequest = async (params: newBoardParams, token: string) => 
     let url;
     url = "/board-service/boards"
     return axios
-        .post(url,
+        .post(process.env.REACT_APP_DB_HOST + url,
             {
                 boardCategory: params.boardCategory,
                 title: params.boardTitle,
@@ -80,7 +79,7 @@ export const updateBoardsRequest = async (params: newBoardParams, token: string,
     let url;
     url = `/board-service/boards/${boardId}`
     return axios
-        .put(url,
+        .put(process.env.REACT_APP_DB_HOST + url,
             {
                 boardCategory: params.boardCategory,
                 title: params.boardTitle,
@@ -97,7 +96,7 @@ export const deleteBoardsRequest = async (token: string, boardId: string) => {
     let url;
     url = `/board-service/boards/${boardId}`
     return axios
-        .delete(url,{
+        .delete(process.env.REACT_APP_DB_HOST + url,{
                 headers: {
                     authorization: token,
                 }

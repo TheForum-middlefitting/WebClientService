@@ -15,7 +15,7 @@ export interface usersUpdateParams {
 export const loginRequest = async (enteredEmail: string, enteredPassword: string) => {
     let url;
     url = "/member-service/members/login";
-    return await axios.post(url, {
+    return await axios.post(process.env.REACT_APP_DB_HOST + url, {
         email: enteredEmail,
         password: enteredPassword
     })
@@ -24,7 +24,7 @@ export const loginRequest = async (enteredEmail: string, enteredPassword: string
 export const signUpRequest = async (email: string, nickname: string, password: string) => {
     let url;
     url = "/member-service/members"
-    return await axios.post(url, {
+    return await axios.post(process.env.REACT_APP_DB_HOST + url, {
         email: email,
         nickname: nickname,
         password: password
@@ -38,7 +38,7 @@ export const nicknameCheckRequest = async (nickname: string) => {
         nickname : nickname,
     };
 
-    return await axios.get(url, {
+    return await axios.get(process.env.REACT_APP_DB_HOST + url, {
         params
     })
 }
@@ -50,7 +50,7 @@ export const emailCheckRequest = async (email: string) => {
         email : email,
     };
 
-    return await axios.get(url, {
+    return await axios.get(process.env.REACT_APP_DB_HOST + url, {
         params
     })
 }
@@ -58,7 +58,7 @@ export const emailCheckRequest = async (email: string) => {
 export const usersInfoRequest = async (id: string, token: string) => {
     let url;
     url = `/member-service/members/${id}`
-    const response = await axios.get(url,
+    const response = await axios.get(process.env.REACT_APP_DB_HOST + url,
         {
             headers: {
                 authorization: token,
@@ -73,7 +73,7 @@ export const deleteUsersRequest = async (id: string, password: string, token: st
     let params = {
         password,
     };
-    const response = await axios.delete(url,
+    const response = await axios.delete(process.env.REACT_APP_DB_HOST + url,
         {
             params,
             headers: {
@@ -86,7 +86,7 @@ export const deleteUsersRequest = async (id: string, password: string, token: st
 export const updateUsersRequest = async (id : string, usersUpdateParams: usersUpdateParams, token: string) => {
     let url;
     url = `/member-service/members/${id}`
-    return await axios.put(url, {
+    return await axios.put(process.env.REACT_APP_DB_HOST + url, {
         email: usersUpdateParams.email,
         nickname: usersUpdateParams.nickname,
         password: usersUpdateParams.password,
