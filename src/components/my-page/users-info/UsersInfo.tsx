@@ -4,20 +4,17 @@ import AuthContext from "../../../store/context/auth-context";
 import Form from "react-bootstrap/Form";
 import {Container} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {errorActions} from "../../../store/redux/errorSlice";
 import {alertActions} from "../../../store/redux/alertSlice";
-import {warningActions} from "../../../store/redux/warningSlice";
 import {useDispatch} from "react-redux";
 import {useMutation, useQueryClient} from "react-query";
 import {
     emailCheckRequest,
     nicknameCheckRequest,
-    signUpRequest,
-    updateUsersRequest, usersUpdateParams
+    updateUsersRequest,
+    usersUpdateParams
 } from "../../../request/usersRequest";
 
 export default function UsersInfo(props: any) {
-    console.log(props.data)
     const [enteredEmail, setEnteredEmail] = useState(props?.data?.email);
     const [enteredNickname, setEnteredNickname] = useState(props?.data?.nickname);
     const [enteredPassword, setEnteredPassword] = useState("");
@@ -163,22 +160,8 @@ export default function UsersInfo(props: any) {
                             required={true}
                             value={enteredEmail}
                             disabled={true}
-                            // onChange={emailChangeHandler}
-                            // isValid={emailEntered && emailParseCheckHandler()}
-                            // isInvalid={emailEntered && !emailParseCheckHandler()}
                         />
-                    {/*    <Form.Control.Feedback>올바른 형식입니다</Form.Control.Feedback>*/}
-                    {/*    <Form.Control.Feedback type="invalid">*/}
-                    {/*        올바른 이메일 형식을 입력해 주세요!*/}
-                    {/*    </Form.Control.Feedback>*/}
                     </Form.Group>
-                    {/*<div className="d-grid mb-3">*/}
-                    {/*    <Button type="button" variant={"outline-primary"} onClick={emailDuplicateCheckHandler}*/}
-                    {/*            disabled={emailDuplicateCheck}>*/}
-                    {/*        {props?.data?.email === enteredEmail ? "이메일을 변경해 보세요" : (emailDuplicateCheck ? "사용 가능한 이메일입니다!" : "이메일 중복 체크")}*/}
-                    {/*    </Button>*/}
-                    {/*</div>*/}
-
                     <Form.Group className="mb-3">
                         <Form.Label><strong>닉네임</strong></Form.Label>
                         <Form.Control

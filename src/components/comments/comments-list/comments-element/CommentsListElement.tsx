@@ -4,11 +4,10 @@ import Button from "react-bootstrap/Button";
 import AuthContext from "../../../../store/context/auth-context";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {warningActions} from "../../../../store/redux/warningSlice";
 import {commentsDeleteRequest, commentsUpdateParams, commentsUpdateRequest} from "../../../../request/commentsRequest";
 import {useMutation, useQueryClient} from "react-query";
-import {newBoardParams, newBoardRequest} from "../../../../request/boardsRequest";
 import {alertActions} from "../../../../store/redux/alertSlice";
 import {errorActions} from "../../../../store/redux/errorSlice";
 import {elapsedTime} from "../../../utils/dateParse";
@@ -25,7 +24,7 @@ export default function CommentsListElement(props: any) {
 
     const updateCommentsMutation = useMutation((params: commentsUpdateParams) => commentsUpdateRequest(params, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 { refetchInactive: true })
                 .then(r => {
                     setIsLoading(false)
@@ -44,9 +43,9 @@ export default function CommentsListElement(props: any) {
         }
     });
 
-    const deleteCommentsMutation = useMutation((params) => commentsDeleteRequest(props.boardsId, props.id, authCtx.authorization), {
+    const deleteCommentsMutation = useMutation((params) => commentsDeleteRequest(props.boardId, props.id, authCtx.authorization), {
         onSuccess: () => {
-            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardsId],
+            queryClient.invalidateQueries(["boardsCommentsPage" + props.boardId],
                 { refetchInactive: true })
                 .then(r => {
                     setIsLoading(false)
@@ -75,33 +74,14 @@ export default function CommentsListElement(props: any) {
         }
         const params : commentsUpdateParams = {
             commentsContent : content.trim(),
-            boardsId : props.boardsId,
+            boardId : props.boardId,
             commentsId : props.id
         }
         setIsLoading(true)
         updateCommentsMutation.mutate(params);
-        // const response = await commentsUpdateRequest(params, authCtx.authorization);
-        // if (response.status == 200) {
-        //     alert("업데이트 성공!")
-            // await queryClient.invalidateQueries(["boardsCommentsPage", props.boardsId, null])
-            // props.setCommentsData([])
-            // props.setCommentsId(null)
-            // props.setRefresh(!props.refresh)
-            // setUpdating(!updating);
-            // console.log(content)
-            // updateStateHandler()
-        // }
     };
 
     const deleteCommentsRequestHandler = async () => {
-        // const response = await commentsDeleteRequest(props.boardsId, props.id, authCtx.authorization);
-        // if (response.status == 200) {
-        //     alert("삭제 성공!")
-        //     await queryClient.invalidateQueries(["boardsCommentsPage", null])
-        //     props.setCommentsData([])
-        //     props.setCommentsId(null)
-        //     props.setRefresh(!props.refresh)
-        // }
         setIsLoading(true)
         deleteCommentsMutation.mutate();
     };

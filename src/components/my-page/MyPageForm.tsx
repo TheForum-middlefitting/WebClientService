@@ -1,8 +1,7 @@
 import UsersInfo from "./users-info/UsersInfo";
 import {useQuery} from "react-query";
 import AuthContext from "../../store/context/auth-context";
-import {useContext, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
 import {usersInfoRequest} from "../../request/usersRequest";
 
 export default function MyPageForm(){

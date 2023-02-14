@@ -1,16 +1,12 @@
-import classes from "./LoginForm.module.css"
 import React, {useContext, useEffect, useRef, useState} from "react";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import axios from "axios";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import AuthContext from "../../store/context/auth-context";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import {loginRequest} from "../../request/usersRequest";
 import {useMutation} from "react-query";
-import {errorActions} from "../../store/redux/errorSlice";
 import {alertActions} from "../../store/redux/alertSlice";
-import {warningActions} from "../../store/redux/warningSlice";
 import {useDispatch} from "react-redux";
 
 
@@ -26,12 +22,10 @@ export default function LoginForm() {
 
     useEffect(() => {
         let returnUrl = location.state.returnUrl
-        console.log(location.state.returnUrl)
         if (location.state.returnUrl === '/auth') {
             returnUrl = "/home"
         }
         if (authCtx.isLoggedIn) {
-            console.log(location.state)
             navigate(returnUrl)
         }
     }, [authCtx.isLoggedIn, navigate, location.state.returnUrl]);
@@ -117,67 +111,10 @@ export default function LoginForm() {
                         {!isLoading ? <Link className={"m-2"} to={`/sign-up`}>회원가입</Link> : "  회원가입"}
                     </p>
                     <hr/>
-                    <h5 className={"text-center"}><strong>SNS 로그인</strong></h5>
+                    {/*<h5 className={"text-center"}><strong>SNS 로그인</strong></h5>*/}
                 </div>
             </Container>
         </>
     )
 }
 
-
-{/*<section className={classes.auth}>*/
-}
-{/*    <h1>{authCtx.isLoggedIn ? "Login" : "Sign Up"}</h1>*/
-}
-{/*    <form onSubmit={submitHandler}>*/
-}
-{/*        <div className={classes.control}>*/
-}
-{/*            <label htmlFor="email">Your Email</label>*/
-}
-{/*            <input*/
-}
-{/*                type="email"*/
-}
-{/*                id="email"*/
-}
-{/*                required*/
-}
-{/*                ref={emailInputRef}/>*/
-}
-{/*        </div>*/
-}
-{/*        <div className={classes.control}>*/
-}
-{/*            <label htmlFor="password">Your Password</label>*/
-}
-{/*            <input*/
-}
-{/*                type="password"*/
-}
-{/*                id="password"*/
-}
-{/*                required*/
-}
-{/*                ref={passwordInputRef}*/
-}
-{/*            />*/
-}
-{/*        </div>*/
-}
-{/*        <div className={classes.actions}>*/
-}
-{/*            {!isLoading && <button>Login</button>}*/
-}
-{/*            {isLoading && <p>Sending Request..</p>}*/
-}
-{/*        </div>*/
-}
-{/*    </form>*/
-}
-{/*    <p/>*/
-}
-{/*    {!isLoading && <Link to={`/sign-up`}>Create new account</Link>}*/
-}
-{/*</section>*/
-}

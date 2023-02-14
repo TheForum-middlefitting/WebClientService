@@ -25,7 +25,6 @@ export default function BoardCard(props: any) {
     }
 
     let directionHandler = (eventkey: any) => {
-        console.log(props.initialParams.direction)
         if (eventkey === props.initialParams.direction) {
             return
         }

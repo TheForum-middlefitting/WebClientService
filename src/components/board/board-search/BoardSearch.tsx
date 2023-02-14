@@ -73,6 +73,5 @@ export default function BoardSearch(props : any) {
                         <Button variant="outline-secondary" id="button-addon1" onClick={searchHandler}>검색</Button>
                     </InputGroup>
                    </Form>
-            //</div>
     )
 }

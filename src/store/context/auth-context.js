@@ -27,7 +27,6 @@ const retrieveStoredToken = () => {
     const sortedExpirationDate = localStorage.getItem("expirationTime");
     const remainingTime = calculateRemainingTime(sortedExpirationDate);
     const memberId = localStorage.getItem("id");
-    console.log(memberId)
     return {
         authorization: storedAuthorizationToken,
         refresh: storedRefreshToken,
@@ -69,23 +68,23 @@ export const AuthContextProvider = (props) => {
     const loginHandler = (response) => {
         setAuthorizationToken(response?.headers?.authorization);
         setRefreshToken(response?.headers?.refresh)
-        setId(response?.data?.data?.memberId)
+        setId(response?.data?.memberId)
         const expirationTime = new Date(new Date().getTime() + 29 * 60 * 1000)
         //문자열이어야 한다는 것에 유념한다.
         localStorage.setItem("expirationTime", expirationTime.toISOString())
         localStorage.setItem("authorization", response?.headers?.authorization)
         localStorage.setItem("refresh", response?.headers?.refresh)
-        localStorage.setItem("id", response?.data?.data?.memberId)
-        localStorage.setItem("nickname", response?.data?.data?.nickname)
-        localStorage.setItem("email", response?.data?.data?.email)
+        localStorage.setItem("id", response?.data?.memberId)
+        localStorage.setItem("nickname", response?.data?.nickname)
+        localStorage.setItem("email", response?.data?.email)
     };
 
 
     const extendAuthorizationToken = useCallback(() => {
         const id = localStorage.getItem("id");
-        const url = `/tokens/${id}`;
+        const url = `/member-service/tokens/${id}`;
         if (!id) {return}
-        axios.get(url, {
+        axios.get(process.env.REACT_APP_DB_HOST + url, {
             headers: {
                 authorization: authorizationToken,
                 refresh: refreshToken
@@ -96,14 +95,11 @@ export const AuthContextProvider = (props) => {
                 localStorage.setItem("expirationTime", expirationTime.toISOString())
                 localStorage.setItem("authorization", response?.headers?.authorization)
                 setAuthorizationToken(response?.headers?.authorization)
-                console.log("success")
             }
             else {
-                console.log(response.data.message);
                 logoutHandler();
             }})
                 .catch(function (error) {
-                console.log(error.response.data.message);
                 logoutHandler();
                 });
     }, [authorizationToken, logoutHandler, refreshToken])
