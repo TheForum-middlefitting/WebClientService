@@ -27,7 +27,6 @@ const retrieveStoredToken = () => {
     const sortedExpirationDate = localStorage.getItem("expirationTime");
     const remainingTime = calculateRemainingTime(sortedExpirationDate);
     const memberId = localStorage.getItem("id");
-    console.log(memberId)
     return {
         authorization: storedAuthorizationToken,
         refresh: storedRefreshToken,
@@ -85,7 +84,7 @@ export const AuthContextProvider = (props) => {
         const id = localStorage.getItem("id");
         const url = `/member-service/tokens/${id}`;
         if (!id) {return}
-        axios.get(url, {
+        axios.get(process.env.REACT_APP_DB_HOST + url, {
             headers: {
                 authorization: authorizationToken,
                 refresh: refreshToken
@@ -96,14 +95,11 @@ export const AuthContextProvider = (props) => {
                 localStorage.setItem("expirationTime", expirationTime.toISOString())
                 localStorage.setItem("authorization", response?.headers?.authorization)
                 setAuthorizationToken(response?.headers?.authorization)
-                console.log("success")
             }
             else {
-                console.log(response.data.message);
                 logoutHandler();
             }})
                 .catch(function (error) {
-                console.log(error.response.data.message);
                 logoutHandler();
                 });
     }, [authorizationToken, logoutHandler, refreshToken])

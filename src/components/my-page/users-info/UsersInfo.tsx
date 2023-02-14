@@ -15,7 +15,6 @@ import {
 } from "../../../request/usersRequest";
 
 export default function UsersInfo(props: any) {
-    console.log(props.data)
     const [enteredEmail, setEnteredEmail] = useState(props?.data?.email);
     const [enteredNickname, setEnteredNickname] = useState(props?.data?.nickname);
     const [enteredPassword, setEnteredPassword] = useState("");

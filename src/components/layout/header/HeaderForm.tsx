@@ -39,8 +39,8 @@ export default function HeaderForm() {
     const loginForm = <button type="button" className="btn btn-outline-light me-2" onClick={toLoginPage}>Login</button>;
     const logoutForm = <button type="button" className="btn btn-outline-light me-2"
                                onClick={authCtx.logout}>Logout</button>;
-    const signUpForm = <button type="button" className="btn btn-warning" onClick={toSignUpPage}>Sign-up</button>;
-    const myPageForm = <button type="button" className="btn btn-warning" onClick={toMyPage}>My-page</button>
+    const signUpForm = <button type="button" className="btn btn-light" onClick={toSignUpPage}>Sign-up</button>;
+    const myPageForm = <button type="button" className="btn btn-light" onClick={toMyPage}>My-page</button>
 
     return (
         <>
@@ -55,17 +55,17 @@ export default function HeaderForm() {
                         </a>
 
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                            <li><a role={"button"} className="nav-link px-2 text-secondary"
+                            <li><a role={"button"} className="nav-link px-2 text-white"
                                    onClick={toHomePage}>Home</a></li>
-                            <li><a role={"button"} className="nav-link px-2 text-white" onClick={toBoardPage}>Board</a>
+                            <li><a role={"button"} className="nav-link px-2 text-white" onClick={toBoardPage}>Community</a>
                             </li>
                         </ul>
 
-                        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                            <input type="search" className="form-control form-control-dark text-bg-dark"
-                                   placeholder="Search..."
-                                   aria-label="Search"/>
-                        </form>
+                        {/*<form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">*/}
+                        {/*    <input type="search" className="form-control form-control-dark text-bg-dark"*/}
+                        {/*           placeholder="Search..."*/}
+                        {/*           aria-label="Search"/>*/}
+                        {/*</form>*/}
                         <div className="text-end">
                             {isLogin ? logoutForm : loginForm}
                             {isLogin ? myPageForm : signUpForm}

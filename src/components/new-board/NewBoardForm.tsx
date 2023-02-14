@@ -137,10 +137,10 @@ export default function NewBoardForm() {
                     카테고리를 선택해 주세요!
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group controlId="formFileMultiple" className="mb-3">
-                <Form.Label>사진</Form.Label>
-                <Form.Control type="file" multiple/>
-            </Form.Group>
+            {/*<Form.Group controlId="formFileMultiple" className="mb-3">*/}
+            {/*    <Form.Label>사진</Form.Label>*/}
+            {/*    <Form.Control type="file" multiple/>*/}
+            {/*</Form.Group>*/}
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>본문</Form.Label>
                 <Form.Control

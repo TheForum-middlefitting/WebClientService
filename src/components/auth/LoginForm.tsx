@@ -22,12 +22,10 @@ export default function LoginForm() {
 
     useEffect(() => {
         let returnUrl = location.state.returnUrl
-        console.log(location.state.returnUrl)
         if (location.state.returnUrl === '/auth') {
             returnUrl = "/home"
         }
         if (authCtx.isLoggedIn) {
-            console.log(location.state)
             navigate(returnUrl)
         }
     }, [authCtx.isLoggedIn, navigate, location.state.returnUrl]);
@@ -113,7 +111,7 @@ export default function LoginForm() {
                         {!isLoading ? <Link className={"m-2"} to={`/sign-up`}>회원가입</Link> : "  회원가입"}
                     </p>
                     <hr/>
-                    <h5 className={"text-center"}><strong>SNS 로그인</strong></h5>
+                    {/*<h5 className={"text-center"}><strong>SNS 로그인</strong></h5>*/}
                 </div>
             </Container>
         </>
