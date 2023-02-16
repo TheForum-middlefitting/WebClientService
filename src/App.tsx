@@ -16,6 +16,8 @@ import AlertModal from "./components/modal/AlertModal";
 import {QueryClient, QueryClientProvider} from 'react-query'
 import MyPage from "./pages/my-page/MyPage";
 import LoadingSpinners from "./components/spinner/LoadingSpinner";
+import FooterForm from "./components/layout/footer/FooterForm";
+import classes from "./App.module.css"
 
 const queryClient = new QueryClient()
 
@@ -34,6 +36,7 @@ function App() {
                     <header><HeaderForm/></header>
                         <Suspense fallback={<LoadingSpinners/>}>
                             <main>
+                                <body className={classes.body}>
                                 <Container className={"mx-auto my-3"}>
                                     <Routes>
                                         <Route path="/" element={<Navigate to="/home"/>}/>
@@ -46,8 +49,10 @@ function App() {
                                         <Route path="/my-page" element={<MyPage/>}/>
                                     </Routes>
                                 </Container>
+                                </body>
                             </main>
                         </Suspense>
+                    <footer className={classes.footer}><FooterForm/></footer>
                 </ThemeProvider>
             </QueryClientProvider>
         </>
