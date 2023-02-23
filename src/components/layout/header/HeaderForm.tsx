@@ -1,6 +1,9 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import AuthContext from "../../../store/context/auth-context";
 import {useContext, useEffect, useState} from "react";
+import "../../../resources/fonts/icomoon/style.css"
+import "../../../resources/css/bootstrap.min.css"
+import "../../../resources/css/style.css"
 
 export default function HeaderForm() {
     const location = useLocation();
@@ -36,6 +39,10 @@ export default function HeaderForm() {
         navigate("/board")
     }
 
+    const toTechStackPage = () => {
+        navigate("/tech-stack")
+    }
+
     const loginForm = <button type="button" className="btn btn-outline-light me-2" onClick={toLoginPage}>Login</button>;
     const logoutForm = <button type="button" className="btn btn-outline-light me-2"
                                onClick={authCtx.logout}>Logout</button>;
@@ -44,7 +51,8 @@ export default function HeaderForm() {
 
     return (
         <>
-            <header className="p-3 text-bg-dark">
+            {/*<header className="p-3 text-bg-dark">*/}
+            <header className="p-3 footer-20192">
                 <div className="container">
                     <div
                         className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -59,6 +67,8 @@ export default function HeaderForm() {
                                    onClick={toHomePage}>Home</a></li>
                             <li><a role={"button"} className="nav-link px-2 text-white" onClick={toBoardPage}>Community</a>
                             </li>
+                            <li><a role={"button"} className="nav-link px-2 text-white"
+                                   onClick={toTechStackPage}>TechStack</a></li>
                         </ul>
 
                         {/*<form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">*/}

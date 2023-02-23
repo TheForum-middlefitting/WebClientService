@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import AuthContext from "../../../store/context/auth-context";
 import {useNavigate} from "react-router-dom";
-
+import "./custom.css"
 
 import React, {useContext, useState} from "react";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -44,13 +44,13 @@ export default function BoardCard(props: any) {
                 <div className="d-flex w-200 justify-content-between">
                 <Nav variant="tabs" defaultActiveKey="total" onSelect={categoryHandler}>
                     <Nav.Item>
-                        <Nav.Link eventKey="total">전체게시판</Nav.Link>
+                        <Nav.Link className="nav-link-custom" eventKey="total">전체게시판</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="free">자유게시판</Nav.Link>
+                        <Nav.Link className="nav-link-custom" eventKey="free">자유게시판</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="notice">공지사항</Nav.Link>
+                        <Nav.Link className="nav-link-custom" eventKey="notice">공지사항</Nav.Link>
                     </Nav.Item>
                 </Nav>
                     <DropdownButton
