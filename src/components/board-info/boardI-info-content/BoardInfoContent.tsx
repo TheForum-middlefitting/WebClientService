@@ -86,17 +86,17 @@ export default function BoardInfoContent(props: any) {
             }}/>
             <div className="d-flex w-200 justify-content-between">
                 <div>
-                    <a style={{cursor: "pointer", textDecoration: "none", color: "black"}} className="me-2">사진</a>
+                    {/*<a style={{cursor: "pointer", textDecoration: "none", color: "black"}} className="me-2">사진</a>*/}
                     <a style={{cursor: "pointer", textDecoration: "none", color: "black"}}
                        className="me-2">{props.boardsInfoData.nickname}</a>
                     <div className="vr mx-2"/>
                     <a style={{cursor: "pointer"}}>{dateTimeString}</a>
                 </div>
-                <div>
-                    조회 :
-                    <div className="vr mx-2"/>
-                    댓글 :
-                </div>
+                {/*<div>*/}
+                {/*    조회 :*/}
+                {/*    <div className="vr mx-2"/>*/}
+                {/*    댓글 :*/}
+                {/*</div>*/}
             </div>
             <hr/>
             <h2 className="text-break mb-5">{props.boardsInfoData.title}</h2>

@@ -146,7 +146,7 @@ export default function CommentsListElement(props: any) {
             </div>
             <div className="d-flex w-100 justify-content-between">
                 <p>{content}</p>
-                <p><small>추천수: 6</small></p>
+                {/*<p><small>추천수: 6</small></p>*/}
             </div>
             {buttonLayout()}
         </div>
