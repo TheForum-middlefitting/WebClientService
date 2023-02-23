@@ -34,7 +34,7 @@ export default function BoarListElement(props : any) {
                 </div>
                 <div className="d-flex w-100 justify-content-between">
                     <p><span><Badge pill bg="info" className="me-2">{categoryParsing(props.category)}</Badge></span><small>#자바</small></p>
-                    <p><small className="text-muted">댓글:10 조회:10</small></p>
+                    {/*<p><small className="text-muted">댓글:10 조회:10</small></p>*/}
                 </div>
             </a>
         </>
