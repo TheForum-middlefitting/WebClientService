@@ -16,8 +16,9 @@ import AlertModal from "./components/modal/AlertModal";
 import {QueryClient, QueryClientProvider} from 'react-query'
 import MyPage from "./pages/my-page/MyPage";
 import LoadingSpinners from "./components/spinner/LoadingSpinner";
-import FooterForm from "./components/layout/footer/FooterForm";
-import classes from "./App.module.css"
+import Footer from "./resources/Footer";
+import TechStack from "./pages/tech-stack/TechStack";
+// import classes from "./App.module.css"
 
 const queryClient = new QueryClient()
 
@@ -34,25 +35,30 @@ function App() {
                     minBreakpoint="xxs"
                 >
                     <header><HeaderForm/></header>
+                    <main>
+                        <body className="d-flex flex-column min-vh-100">
                         <Suspense fallback={<LoadingSpinners/>}>
-                            <main>
-                                <body className={classes.body}>
-                                <Container className={"mx-auto my-3"}>
-                                    <Routes>
-                                        <Route path="/" element={<Navigate to="/home"/>}/>
-                                        <Route path="/home" element={<Home/>}/>
-                                        <Route path="/auth" element={<AuthPage/>}/>
-                                        <Route path="/sign-up" element={<SignUpPage/>}/>
-                                        <Route path="/board" element={<Board/>}/>
-                                        <Route path="/boards/info/:id" element={<BoardInfo/>}/>
-                                        <Route path="/board/new" element={<NewBoard/>}/>
-                                        <Route path="/my-page" element={<MyPage/>}/>
-                                    </Routes>
-                                </Container>
-                                </body>
-                            </main>
+                            <Container className={"mx-auto my-3"}>
+                                <Routes>
+                                    <Route path="/" element={<Navigate to="/home"/>}/>
+                                    <Route path="/home" element={<Home/>}/>
+                                    <Route path="/tech-stack" element={<TechStack/>}/>
+                                    <Route path="/auth" element={<AuthPage/>}/>
+                                    <Route path="/sign-up" element={<SignUpPage/>}/>
+                                    <Route path="/board" element={<Board/>}/>
+                                    <Route path="/boards/info/:id" element={<BoardInfo/>}/>
+                                    <Route path="/board/new" element={<NewBoard/>}/>
+                                    <Route path="/my-page" element={<MyPage/>}/>
+                                </Routes>
+                            </Container>
                         </Suspense>
-                    <footer className={classes.footer}><FooterForm/></footer>
+                        </body>
+                    </main>
+                    <div className="wrap">
+                        {/*<footer className="py-5 bg-dark mt-auto"><TechStack/></footer>*/}
+                        {/*<footer className="mt-auto"><Footer/></footer>*/}
+                        <Footer/>
+                    </div>
                 </ThemeProvider>
             </QueryClientProvider>
         </>
